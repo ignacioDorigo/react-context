@@ -4,20 +4,25 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { AuthContext } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const Button = styled.button`
   color: #fff;
   font-weight: bold;
   padding: 0.5rem 1rem;
-  background-color: #db7093;
+  // background-color: #db7093;
+  color: #db7093;
+  background-color: #ffffff;
   border: none;
+  border: 2px solid #db7093;
   border-radius: 3px;
   cursor: pointer;
   margin-top: 10px;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #c71585;
+    background-color: #db7093;
+    color: #fff;
   }
 `;
 
@@ -39,6 +44,12 @@ export default function LoginForm() {
       try {
         console.log(formulario);
         login(formulario.email);
+        // Esto se va a ejecutar siempre que se ingresa un mail
+        Swal.fire({
+          title: "Exito",
+          text: "Las credenciales son correctas",
+          icon: "success",
+        });
       } catch (error) {
         console.log(error);
       }
